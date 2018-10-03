@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const backendPort = 3001;
+const PORT = process.env.PROT;
 const knex = require('knex');
 const db = knex({
     client: 'pg',
@@ -28,6 +28,6 @@ app.post('/signin',  signin.handleSignin(db, bcrypt));
 app.post('/signup', signup.handleSignup(db, bcrypt));
 app.get('/profile/:id', getProfile.handleGetProfile(db));
 app.put('/getFaces', getFaces.handleGetFaces(db));
-app.listen(backendPort, () => {
-    console.log(`app is running on port ${backendPort}`);
+app.listen(PORT, () => {
+    console.log(`app is running on port ${PORT}`);
 });
